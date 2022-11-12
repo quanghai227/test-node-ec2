@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>List Post</title>
+
+  <%- include('../layout/header') %>
+  
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <%- include('../layout/navbar') %>
+        <!-- /.navbar -->
+      
+        <!-- Main Sidebar Container -->
+        <%- include('../layout/sidebar') %>
+      
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <div class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                  <h1 class="m-0 text-dark">List Post</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">List Post</li>
+                  </ol>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+          </div>
+          <!-- /.content-header -->
+      
+          <!-- Main content -->
+          <div class="content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <a href="/admin/post/add" class="btn btn-outline-success"><i class="fas fa-plus"></i> Add New Post</a>
+      
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                          <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+      
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <% if(users && users.length > 0){ %>
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-hover text-nowrap">
+                        <thead>
+                          <tr>
+                            <th width="7%">ID</th>
+                            <th width="23%">Email</th>
+                            <th width="20%">First Name</th>
+                            <th width="20%">Last Name</th>
+                            <th width="15%">Create At</th>
+                            <th width="15%">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(function(user) { %>
+                          <tr class="post_tr">
+                            <td><%= user.id %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.first_name %></td>
+                            <td><%= user.last_name %></td>
+                            <td><%= user.created_at %></td>
+                            <td>
+                              <a href="/admin/user/edit/<%= user.id %>" class="btn btn-outline-warning"><i class="fas fa-pencil-alt"></i> Edit</a>
+                              <button class="btn btn-outline-danger user_delete" user_id="<%= user.id %>"><i class="fas fa-trash"></i> Delete</button>
+                            </td>
+                          </tr>
+                          <% }) %>
+                        </tbody>
+                      </table>
+                    </div>
+                    <% } else if(errors && errors.lists) { %>
+                    <div class="card-body table-responsive text-center">
+                        <h4 class="text-danger"><%= errors.lists %>...</h4>
+                    </div>
+                    <% } %>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+              </div>
+              <!-- /.row -->
+            </div><!-- /.container-fluid -->
+          </div>
+          <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+      
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+          <!-- Control sidebar content goes here -->
+          <div class="p-3">
+            <h5>Title</h5>
+            <p>Sidebar content</p>
+          </div>
+        </aside>
+        <!-- /.control-sidebar -->
+      
+        <!-- Main Footer -->
+        <footer class="main-footer">
+          <!-- To the right -->
+          <div class="float-right d-none d-sm-inline">
+            Anything you want
+          </div>
+          <!-- Default to the left -->
+          <strong>Copyright &copy; 2021 </strong> by Quang Hai
+        </footer>
+      </div>
+<!-- ./wrapper -->
+
+<%- include('../layout/footer') %>
+</body>
+</html>
